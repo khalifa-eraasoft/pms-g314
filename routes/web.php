@@ -26,7 +26,7 @@ Route::post("/store", [CategoryController::class, 'store'])
 Route::get('/edit/{id}', [CategoryController::class, 'edit'])
     ->name("categories.edit");
 
-Route::get("/show/{id}", [CategoryController::class, 'show'])
+Route::get("/show/{category}", [CategoryController::class, 'show'])
     ->name("categories.show");
 
 Route::put("/update/{id}", [CategoryController::class, 'update'])

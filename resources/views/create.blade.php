@@ -27,7 +27,7 @@
         @error('name')
             {{ $message }}
         @enderror
-        <input type="submit" value="save">
+        <input type="submit" value ="save">
     </form>
     @if (session()->has('success'))
         <div class="alert alert-success">
