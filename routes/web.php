@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [CategoryController::class, 'index'])
+Route::get('/categories', [CategoryController::class, 'index'])
     ->name("categories.index");
 
 Route::get('/create', [CategoryController::class, 'create'])
@@ -29,8 +29,21 @@ Route::get('/edit/{id}', [CategoryController::class, 'edit'])
 Route::get("/show/{id}", [CategoryController::class, 'show'])
     ->name("categories.show");
 
-Route::post("/update/{id}", [CategoryController::class, 'update'])
+Route::put("/update/{id}", [CategoryController::class, 'update'])
     ->name("categories.update");
 
-Route::get("/delete/{id}", [CategoryController::class, 'delete'])
+Route::delete("/delete/{id}", [CategoryController::class, 'delete'])
     ->name("categories.delete");
+
+
+// when creat a category for example
+// required.
+// migration file ( create_categories_table )
+// category controller ( CategoryController )
+// Route ( 7 routes )
+// view ( 3 views ) ( index, create, edit )
+// model ( Category )
+// Op.
+// factory ( CategoryFactory )
+// seeder ( CategorySeeder )
+// DataBaseSeeder ( CategorySeeder )

@@ -15,6 +15,7 @@
     {{-- {{dd($category)}} --}}
     <form action="{{ route('categories.update', $category->id) }}" method="POST">
         @csrf
+        @method('PUT')
         <input type="text" name="name" value="{{ $category->name }}">
         @error('name')
             {{ $message }}

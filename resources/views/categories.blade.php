@@ -12,42 +12,46 @@
 </head>
 
 <body class="antialiased">
-    <a href="{{ route('categories.create') }}">create New Category</a>
-    <table class="border">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($categories as $category)
-                <tr>
-                    <td>
-                        {{ $category->id }}
-                    </td>
-                    <td>
-                        {{ $category->name }}
-                    </td>
-                    <td>
-                        <a href="{{ route('categories.show', $category->id) }}">show</a>
-                        <a href="{{ route('categories.edit', $category->id) }}">edit</a>
-                        <a href="{{ route('categories.delete', $category->id) }}">delete</a>
-                    </td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="3">no categories</td>
-                </tr>
-            @endforelse
-            @if (session()->has('success'))
-                <div class="alert alert-success">
-                    {{ session()->get('success') }}
-                </div>
-            @endif
-        </tbody>
-    </table>
+<a href="{{ route('categories.create') }}">create New Category</a>
+<table class="border">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    @forelse ($categories as $category)
+        <tr>
+            <td>
+                {{ $category->id }}
+            </td>
+            <td>
+                {{ $category->name }}
+            </td>
+            <td>
+                <a href="{{ route('categories.show', $category->id) }}">show</a>
+                <a href="{{ route('categories.edit', $category->id) }}">edit</a>
+                <form action="{{ route('categories.delete', $category->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" value="delete">
+                </form>
+            </td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="3">no categories</td>
+        </tr>
+    @endforelse
+    @if (session()->has('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+    </tbody>
+</table>
 </body>
 
 </html>

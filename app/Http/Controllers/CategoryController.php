@@ -15,16 +15,6 @@ class CategoryController extends Controller
     }
 
 
-    public function show($id)
-    {
-        $category = DB::table("categories")->where("id", $id)
-            ->first();
-        if ($category) {
-            return view("single-category", compact("category"));
-        }
-        abort(404);
-    }
-
     public function create()
     {
         return view("create");
@@ -65,6 +55,16 @@ class CategoryController extends Controller
             ]);
         return back()
             ->with("success", "category updated successfully");
+    }
+
+    public function show($id)
+    {
+        $category = DB::table("categories")->where("id", $id)
+            ->first();
+        if ($category) {
+            return view("single-category", compact("category"));
+        }
+        abort(404);
     }
 
     public function delete($id)
